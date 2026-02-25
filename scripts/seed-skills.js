@@ -536,7 +536,7 @@ async function upsertSkill(skill) {
     mcpServers: mcpServerIds,
     useCases: useCaseIds,
     locale: skill.locale || DEFAULT_SKILL_LOCALE,
-    ...(shouldPublish ? { publishedAt: new Date().toISOString() } : {}),
+    ...(shouldPublish ? { publishedAt: new Date() } : {}),
   });
 
   const existing = await strapi.db
