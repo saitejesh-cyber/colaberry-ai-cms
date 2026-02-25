@@ -1,0 +1,386 @@
+[
+  {
+    "name": "Deep Research",
+    "slug": "deep-research",
+    "summary": "Performs iterative web research with source-backed synthesis.",
+    "longDescription": "Plans a research strategy, executes multi-pass browsing, and returns structured findings with citations and confidence notes.",
+    "provider": "mzxrai",
+    "category": "ClawHub top downloads",
+    "skillType": "Documentation",
+    "usageCount": 2400000,
+    "rating": 4.9,
+    "tags": [
+      "research",
+      "documentation",
+      "analysis"
+    ]
+  },
+  {
+    "name": "Ultracite",
+    "slug": "ultracite",
+    "summary": "Automates citation formatting and reference management.",
+    "longDescription": "Generates properly linked citations while preserving source traceability for reports, specs, and long-form writing.",
+    "provider": "zju-real",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 285300,
+    "rating": 4.8,
+    "tags": [
+      "citations",
+      "writing",
+      "references"
+    ]
+  },
+  {
+    "name": "Playwright",
+    "slug": "playwright",
+    "summary": "Runs browser automation and interaction testing workflows.",
+    "longDescription": "Executes scripted browser sessions for QA, scraping, and repeatable UI checks with deterministic step control.",
+    "provider": "microsoft",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 255700,
+    "rating": 4.8,
+    "tags": [
+      "browser",
+      "automation",
+      "testing"
+    ]
+  },
+  {
+    "name": "Screenshot",
+    "slug": "screenshot",
+    "summary": "Captures page screenshots from local or remote URLs.",
+    "longDescription": "Creates reliable visual captures for reviews, regressions, and documentation from either local dev servers or published pages.",
+    "provider": "tuannvm",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 193800,
+    "rating": 4.7,
+    "tags": [
+      "screenshot",
+      "visual-qa",
+      "ui"
+    ]
+  },
+  {
+    "name": "Context7",
+    "slug": "context7",
+    "summary": "Injects up-to-date docs and API context into prompts.",
+    "longDescription": "Resolves fresh framework and package references and supplies relevant snippets to improve code generation quality.",
+    "provider": "upstash",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 148000,
+    "rating": 4.8,
+    "tags": [
+      "docs",
+      "framework",
+      "coding"
+    ]
+  },
+  {
+    "name": "Superdesign",
+    "slug": "superdesign",
+    "summary": "Generates UI concepts from prompts and screenshots.",
+    "longDescription": "Produces component-level design directions and layout variants for product iteration and rapid prototyping.",
+    "provider": "tuannvm",
+    "category": "ClawHub top downloads",
+    "skillType": "Ideation and design",
+    "usageCount": 119800,
+    "rating": 4.6,
+    "tags": [
+      "design",
+      "ui",
+      "prototype"
+    ]
+  },
+  {
+    "name": "Copy as Markdown",
+    "slug": "copy-as-markdown",
+    "summary": "Converts web pages into clean markdown output.",
+    "longDescription": "Extracts readable markdown from complex pages while preserving headings, links, and content structure.",
+    "provider": "tiziano",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 117800,
+    "rating": 4.6,
+    "tags": [
+      "markdown",
+      "content",
+      "extraction"
+    ]
+  },
+  {
+    "name": "Think",
+    "slug": "think",
+    "summary": "Enforces deliberate step-by-step reasoning.",
+    "longDescription": "Adds structured thinking checkpoints for better decomposition, edge-case handling, and final-answer quality.",
+    "provider": "dustindmorris",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 111200,
+    "rating": 4.7,
+    "tags": [
+      "reasoning",
+      "planning",
+      "quality"
+    ]
+  },
+  {
+    "name": "Redirect Follow",
+    "slug": "redirect-follow",
+    "summary": "Resolves redirect chains and final destination URLs.",
+    "longDescription": "Tracks HTTP redirects and reports final endpoints with status and metadata useful for integrations and audits.",
+    "provider": "95du",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 82500,
+    "rating": 4.5,
+    "tags": [
+      "http",
+      "redirect",
+      "integration"
+    ]
+  },
+  {
+    "name": "Multi Fetch",
+    "slug": "multi-fetch",
+    "summary": "Fetches and summarizes multiple URLs in a single pass.",
+    "longDescription": "Parallel-fetches multiple sources and returns normalized summaries for decision support and rapid monitoring.",
+    "provider": "lroolle",
+    "category": "ClawHub top downloads",
+    "skillType": "Productivity and workflow",
+    "usageCount": 65600,
+    "rating": 4.5,
+    "tags": [
+      "fetch",
+      "summarization",
+      "workflow"
+    ]
+  },
+  {
+    "name": "DeepWiki",
+    "slug": "deepwiki",
+    "summary": "Provides repo-aware technical context from DeepWiki.",
+    "longDescription": "Pulls architecture and codebase intelligence from DeepWiki-style sources to improve implementation answers.",
+    "provider": "deepwiki",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 46500,
+    "rating": 4.5,
+    "tags": [
+      "codebase",
+      "wiki",
+      "developer-experience"
+    ]
+  },
+  {
+    "name": "Sequential Thinking",
+    "slug": "sequential-thinking",
+    "summary": "Breaks complex tasks into deterministic reasoning steps.",
+    "longDescription": "Imposes a sequential chain for task solving so outcomes are auditable and easier to review.",
+    "provider": "smithery-ai",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 37600,
+    "rating": 4.6,
+    "tags": [
+      "reasoning",
+      "debugging",
+      "planning"
+    ]
+  },
+  {
+    "name": "Run in Terminal",
+    "slug": "run-in-terminal",
+    "summary": "Executes shell commands with controlled context.",
+    "longDescription": "Runs terminal workflows and reports outputs for automation tasks, diagnostics, and local tool orchestration.",
+    "provider": "rusiaaman",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 37200,
+    "rating": 4.5,
+    "tags": [
+      "terminal",
+      "automation",
+      "ops"
+    ]
+  },
+  {
+    "name": "Semgrep",
+    "slug": "semgrep",
+    "summary": "Scans code for vulnerabilities and policy violations.",
+    "longDescription": "Runs Semgrep rule packs and returns prioritized findings for secure development and remediation workflows.",
+    "provider": "semgrep",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 31400,
+    "rating": 4.7,
+    "tags": [
+      "security",
+      "sast",
+      "compliance"
+    ]
+  },
+  {
+    "name": "Hapi UI Enhancer",
+    "slug": "hapi-ui-enhancer",
+    "summary": "Enhances UI quality and consistency patterns.",
+    "longDescription": "Applies modern UI refinements, spacing rules, and micro-layout improvements for production-grade interfaces.",
+    "provider": "hapi",
+    "category": "ClawHub top downloads",
+    "skillType": "Ideation and design",
+    "usageCount": 29000,
+    "rating": 4.4,
+    "tags": [
+      "ui",
+      "design-system",
+      "frontend"
+    ]
+  },
+  {
+    "name": "Browser Tools",
+    "slug": "browser-tools",
+    "summary": "Provides browser inspection and interaction toolchain.",
+    "longDescription": "Uses browser-level hooks for inspection, interaction, and data extraction in debugging and automation scenarios.",
+    "provider": "agentdeskai",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 27600,
+    "rating": 4.5,
+    "tags": [
+      "browser",
+      "debugging",
+      "automation"
+    ]
+  },
+  {
+    "name": "Serena",
+    "slug": "serena",
+    "summary": "Coding-agent toolkit for structured software delivery.",
+    "longDescription": "Supports coding workflows with planning, implementation discipline, and reusable engineering patterns.",
+    "provider": "oraios",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 24700,
+    "rating": 4.4,
+    "tags": [
+      "coding-agent",
+      "engineering",
+      "workflow"
+    ]
+  },
+  {
+    "name": "IDE",
+    "slug": "ide",
+    "summary": "General coding assistance across IDE-centered tasks.",
+    "longDescription": "Improves coding productivity with structured edit workflows, context collection, and implementation guidance.",
+    "provider": "oraios",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 22400,
+    "rating": 4.4,
+    "tags": [
+      "ide",
+      "coding",
+      "productivity"
+    ]
+  },
+  {
+    "name": "Chrome DevTools",
+    "slug": "chrome-devtools",
+    "summary": "Uses Chrome DevTools protocol for browser debugging.",
+    "longDescription": "Automates browser debugging and performance inspection using DevTools capabilities for advanced UI diagnostics.",
+    "provider": "gongrzhe",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 20800,
+    "rating": 4.5,
+    "tags": [
+      "devtools",
+      "performance",
+      "debugging"
+    ]
+  },
+  {
+    "name": "Desktop Commander",
+    "slug": "desktop-commander",
+    "summary": "Runs desktop-level command and file workflows.",
+    "longDescription": "Combines command execution and file operations to orchestrate local development tasks with assistant control.",
+    "provider": "wonderwhy-er",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 19000,
+    "rating": 4.4,
+    "tags": [
+      "desktop",
+      "terminal",
+      "files"
+    ]
+  },
+  {
+    "name": "Task Master AI",
+    "slug": "task-master-ai",
+    "summary": "AI-assisted task orchestration for software projects.",
+    "longDescription": "Tracks project tasks, dependencies, and execution signals to improve planning and engineering throughput.",
+    "provider": "eyaltoledano",
+    "category": "ClawHub top downloads",
+    "skillType": "Productivity and workflow",
+    "usageCount": 17500,
+    "rating": 4.4,
+    "tags": [
+      "tasks",
+      "project-management",
+      "workflow"
+    ]
+  },
+  {
+    "name": "Claude Task Master",
+    "slug": "claude-task-master",
+    "summary": "Task planning and orchestration patterns for Claude workflows.",
+    "longDescription": "Adds workflow templates for backlog shaping, sequencing, and completion tracking in assistant-led engineering work.",
+    "provider": "eyaltoledano",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 17200,
+    "rating": 4.3,
+    "tags": [
+      "claude",
+      "tasks",
+      "planning"
+    ]
+  },
+  {
+    "name": "21st Dev Magic",
+    "slug": "21st-dev-magic",
+    "summary": "Generates polished UI components from prompts and references.",
+    "longDescription": "Turns UI intent, prompts, and screenshots into component drafts tailored for modern product teams.",
+    "provider": "21st-dev",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 16700,
+    "rating": 4.4,
+    "tags": [
+      "components",
+      "ui",
+      "frontend"
+    ]
+  },
+  {
+    "name": "Shadcn UI",
+    "slug": "shadcn-ui",
+    "summary": "Builds and extends shadcn/ui based component systems.",
+    "longDescription": "Accelerates implementation of consistent component libraries and design-token aligned frontend modules.",
+    "provider": "jetbrains",
+    "category": "ClawHub top downloads",
+    "skillType": "Development utilities",
+    "usageCount": 13800,
+    "rating": 4.3,
+    "tags": [
+      "shadcn",
+      "components",
+      "design-system"
+    ]
+  }
+]
