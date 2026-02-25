@@ -422,6 +422,7 @@ const ALL_SEED_SKILLS = (() => {
 })();
 
 const shouldPublish = process.argv.includes('--publish');
+const DEFAULT_SKILL_LOCALE = process.env.SKILLS_LOCALE || 'en';
 
 function slugify(value) {
   return String(value || '')
@@ -534,7 +535,8 @@ async function upsertSkill(skill) {
     agents: agentIds,
     mcpServers: mcpServerIds,
     useCases: useCaseIds,
-    ...(shouldPublish ? { publishedAt: new Date() } : {}),
+    locale: skill.locale || DEFAULT_SKILL_LOCALE,
+    ...(shouldPublish ? { publishedAt: new Date().toISOString() } : {}),
   });
 
   const existing = await strapi.db
