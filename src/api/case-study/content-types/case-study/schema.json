@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "use_cases",
+  "collectionName": "case_studies",
   "info": {
-    "singularName": "use-case",
-    "pluralName": "use-cases",
-    "displayName": "Use Case"
+    "singularName": "case-study",
+    "pluralName": "case-studies",
+    "displayName": "Case Study",
+    "description": "Enterprise delivery outcomes and implementation narratives"
   },
   "options": {
     "draftAndPublish": true
@@ -30,28 +31,17 @@
     "status": {
       "type": "enumeration",
       "default": "live",
-      "enum": [
-        "live",
-        "beta",
-        "concept"
-      ]
+      "enum": ["live", "beta", "concept", "archived"]
     },
     "visibility": {
       "type": "enumeration",
       "default": "public",
-      "enum": [
-        "public",
-        "private"
-      ]
+      "enum": ["public", "private"]
     },
     "source": {
       "type": "enumeration",
       "default": "internal",
-      "enum": [
-        "internal",
-        "external",
-        "partner"
-      ]
+      "enum": ["internal", "external", "partner"]
     },
     "sourceUrl": {
       "type": "string"
@@ -66,13 +56,13 @@
     "industry": {
       "type": "string"
     },
-    "category": {
+    "clientName": {
       "type": "string"
     },
-    "problem": {
+    "challenge": {
       "type": "text"
     },
-    "approach": {
+    "solution": {
       "type": "text"
     },
     "outcomes": {
@@ -84,23 +74,27 @@
     "keyBenefits": {
       "type": "text"
     },
-    "implementationSteps": {
-      "type": "text"
-    },
     "requirements": {
       "type": "text"
     },
     "limitations": {
       "type": "text"
     },
+    "exampleWorkflow": {
+      "type": "text"
+    },
     "timeline": {
       "type": "string"
     },
-    "docsUrl": {
-      "type": "string"
+    "implementationSteps": {
+      "type": "text"
     },
-    "demoUrl": {
-      "type": "string"
+    "usageCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "rating": {
+      "type": "decimal"
     },
     "lastUpdated": {
       "type": "datetime"
@@ -108,11 +102,7 @@
     "coverImage": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ]
+      "allowedTypes": ["images", "files"]
     },
     "tags": {
       "type": "relation",
@@ -124,23 +114,21 @@
       "relation": "manyToMany",
       "target": "api::company.company"
     },
-    "agents": {
+    "category": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::agent.agent",
-      "inversedBy": "linkedUseCases"
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "case_studies"
     },
-    "mcpServers": {
+    "useCases": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::mcp-server.mcp-server",
-      "inversedBy": "linkedUseCases"
+      "target": "api::use-case.use-case"
     },
-    "skills": {
+    "relatedArticles": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::skill.skill",
-      "mappedBy": "useCases"
+      "target": "api::article.article"
     },
     "seo": {
       "type": "component",

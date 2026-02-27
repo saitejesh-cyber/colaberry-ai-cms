@@ -528,6 +528,14 @@ export interface ApiAgentAgent extends Struct.CollectionTypeSchema {
     keyBenefits: Schema.Attribute.Text;
     lastUpdated: Schema.Attribute.DateTime;
     limitations: Schema.Attribute.Text;
+    linkedMcpServers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::mcp-server.mcp-server'
+    >;
+    linkedUseCases: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::use-case.use-case'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::agent.agent'> &
       Schema.Attribute.Private;
@@ -540,6 +548,8 @@ export interface ApiAgentAgent extends Struct.CollectionTypeSchema {
     rating: Schema.Attribute.Decimal;
     requirements: Schema.Attribute.Text;
     securityCompliance: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
       Schema.Attribute.DefaultTo<'internal'>;
@@ -578,13 +588,14 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
     >;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
+        maxLength: 280;
       }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -593,7 +604,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'>;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -633,6 +646,152 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBookBook extends Struct.CollectionTypeSchema {
+  collectionName: 'books';
+  info: {
+    description: 'Enterprise books and companion artifacts';
+    displayName: 'Book';
+    pluralName: 'books';
+    singularName: 'book';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
+    coverImage: Schema.Attribute.Media<'images' | 'files'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    downloadUrl: Schema.Attribute.String;
+    edition: Schema.Attribute.String;
+    exampleWorkflow: Schema.Attribute.Text;
+    format: Schema.Attribute.Enumeration<
+      ['digital', 'print', 'audio', 'mixed']
+    > &
+      Schema.Attribute.DefaultTo<'digital'>;
+    industry: Schema.Attribute.String;
+    isbn: Schema.Attribute.String;
+    keyBenefits: Schema.Attribute.Text;
+    language: Schema.Attribute.String;
+    lastUpdated: Schema.Attribute.DateTime;
+    limitations: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::book.book'> &
+      Schema.Attribute.Private;
+    longDescription: Schema.Attribute.RichText;
+    pageCount: Schema.Attribute.Integer;
+    previewUrl: Schema.Attribute.String;
+    publishDate: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    publisher: Schema.Attribute.String;
+    rating: Schema.Attribute.Decimal;
+    readingTime: Schema.Attribute.String;
+    relatedArticles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::article.article'
+    >;
+    requirements: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
+      Schema.Attribute.DefaultTo<'internal'>;
+    sourceName: Schema.Attribute.String;
+    sourceUrl: Schema.Attribute.String;
+    status: Schema.Attribute.Enumeration<
+      ['live', 'beta', 'concept', 'archived']
+    > &
+      Schema.Attribute.DefaultTo<'live'>;
+    summary: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 280;
+      }>;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usageCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    useCases: Schema.Attribute.Relation<'manyToMany', 'api::use-case.use-case'>;
+    useCasesText: Schema.Attribute.Text;
+    verified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    visibility: Schema.Attribute.Enumeration<['public', 'private']> &
+      Schema.Attribute.DefaultTo<'public'>;
+  };
+}
+
+export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
+  collectionName: 'case_studies';
+  info: {
+    description: 'Enterprise delivery outcomes and implementation narratives';
+    displayName: 'Case Study';
+    pluralName: 'case-studies';
+    singularName: 'case-study';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    challenge: Schema.Attribute.Text;
+    clientName: Schema.Attribute.String;
+    companies: Schema.Attribute.Relation<'manyToMany', 'api::company.company'>;
+    coverImage: Schema.Attribute.Media<'images' | 'files'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    exampleWorkflow: Schema.Attribute.Text;
+    implementationSteps: Schema.Attribute.Text;
+    industry: Schema.Attribute.String;
+    keyBenefits: Schema.Attribute.Text;
+    lastUpdated: Schema.Attribute.DateTime;
+    limitations: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::case-study.case-study'
+    > &
+      Schema.Attribute.Private;
+    longDescription: Schema.Attribute.RichText;
+    metrics: Schema.Attribute.Text;
+    outcomes: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Decimal;
+    relatedArticles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::article.article'
+    >;
+    requirements: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    solution: Schema.Attribute.Text;
+    source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
+      Schema.Attribute.DefaultTo<'internal'>;
+    sourceName: Schema.Attribute.String;
+    sourceUrl: Schema.Attribute.String;
+    status: Schema.Attribute.Enumeration<
+      ['live', 'beta', 'concept', 'archived']
+    > &
+      Schema.Attribute.DefaultTo<'live'>;
+    summary: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 280;
+      }>;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    timeline: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usageCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    useCases: Schema.Attribute.Relation<'manyToMany', 'api::use-case.use-case'>;
+    verified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    visibility: Schema.Attribute.Enumeration<['public', 'private']> &
+      Schema.Attribute.DefaultTo<'public'>;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -646,6 +805,11 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    books: Schema.Attribute.Relation<'oneToMany', 'api::book.book'>;
+    case_studies: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::case-study.case-study'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -677,6 +841,11 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   };
   attributes: {
     agents: Schema.Attribute.Relation<'manyToMany', 'api::agent.agent'>;
+    books: Schema.Attribute.Relation<'manyToMany', 'api::book.book'>;
+    case_studies: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-study.case-study'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -700,10 +869,15 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
       'api::podcast-episode.podcast-episode'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    use_cases: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::use-case.use-case'
+    >;
     website: Schema.Attribute.String;
   };
 }
@@ -774,6 +948,57 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiImportJobImportJob extends Struct.CollectionTypeSchema {
+  collectionName: 'import_jobs';
+  info: {
+    displayName: 'Import Job';
+    pluralName: 'import-jobs';
+    singularName: 'import-job';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    createRelations: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    csvFile: Schema.Attribute.Media<'files'>;
+    csvText: Schema.Attribute.Text;
+    dryRun: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    entityType: Schema.Attribute.Enumeration<
+      ['agent', 'mcpServer', 'skill', 'podcast']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'skill'>;
+    errors: Schema.Attribute.JSON;
+    lastMessage: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::import-job.import-job'
+    > &
+      Schema.Attribute.Private;
+    processedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    publishEntries: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    runImport: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    sourceUrl: Schema.Attribute.String;
+    startedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['queued', 'processing', 'completed', 'failed']
+    > &
+      Schema.Attribute.DefaultTo<'queued'>;
+    strictMode: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    summary: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMcpServerMcpServer extends Struct.CollectionTypeSchema {
   collectionName: 'mcp_servers';
   info: {
@@ -806,6 +1031,10 @@ export interface ApiMcpServerMcpServer extends Struct.CollectionTypeSchema {
     language: Schema.Attribute.String;
     lastUpdated: Schema.Attribute.DateTime;
     limitations: Schema.Attribute.Text;
+    linkedUseCases: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::use-case.use-case'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -821,7 +1050,9 @@ export interface ApiMcpServerMcpServer extends Struct.CollectionTypeSchema {
     rating: Schema.Attribute.Decimal;
     registryName: Schema.Attribute.String;
     requirements: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     serverType: Schema.Attribute.String;
+    skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
       Schema.Attribute.DefaultTo<'internal'>;
@@ -927,6 +1158,7 @@ export interface ApiPodcastEpisodePodcastEpisode
       Schema.Attribute.DefaultTo<'internal'>;
     publishedAt: Schema.Attribute.DateTime;
     publishedDate: Schema.Attribute.Date;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     shareCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     subscribeCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
@@ -1041,6 +1273,51 @@ export interface ApiPodcastLogPodcastLog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSkillImportSkillImport extends Struct.CollectionTypeSchema {
+  collectionName: 'skill_imports';
+  info: {
+    displayName: 'Skill Import';
+    pluralName: 'skill-imports';
+    singularName: 'skill-import';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    createRelations: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    csvFile: Schema.Attribute.Media<'files'>;
+    csvText: Schema.Attribute.Text;
+    dryRun: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    errors: Schema.Attribute.JSON;
+    lastMessage: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::skill-import.skill-import'
+    > &
+      Schema.Attribute.Private;
+    processedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    publishEntries: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    runImport: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    startedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['queued', 'processing', 'completed', 'failed']
+    > &
+      Schema.Attribute.DefaultTo<'queued'>;
+    strictMode: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    summary: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
   collectionName: 'skills';
   info: {
@@ -1084,6 +1361,7 @@ export interface ApiSkillSkill extends Struct.CollectionTypeSchema {
     rating: Schema.Attribute.Decimal;
     requirements: Schema.Attribute.Text;
     securityNotes: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     skillType: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
@@ -1121,6 +1399,11 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
   };
   attributes: {
     agents: Schema.Attribute.Relation<'manyToMany', 'api::agent.agent'>;
+    books: Schema.Attribute.Relation<'manyToMany', 'api::book.book'>;
+    case_studies: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-study.case-study'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1138,10 +1421,15 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
       'api::podcast-episode.podcast-episode'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    use_cases: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::use-case.use-case'
+    >;
   };
 }
 
@@ -1187,6 +1475,8 @@ export interface ApiUseCaseUseCase extends Struct.CollectionTypeSchema {
     problem: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     requirements: Schema.Attribute.Text;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    skills: Schema.Attribute.Relation<'manyToMany', 'api::skill.skill'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     source: Schema.Attribute.Enumeration<['internal', 'external', 'partner']> &
       Schema.Attribute.DefaultTo<'internal'>;
@@ -1726,15 +2016,19 @@ declare module '@strapi/strapi' {
       'api::agent.agent': ApiAgentAgent;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::book.book': ApiBookBook;
+      'api::case-study.case-study': ApiCaseStudyCaseStudy;
       'api::category.category': ApiCategoryCategory;
       'api::company.company': ApiCompanyCompany;
       'api::global-navigation.global-navigation': ApiGlobalNavigationGlobalNavigation;
       'api::global.global': ApiGlobalGlobal;
+      'api::import-job.import-job': ApiImportJobImportJob;
       'api::mcp-server.mcp-server': ApiMcpServerMcpServer;
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::podcast-episode.podcast-episode': ApiPodcastEpisodePodcastEpisode;
       'api::podcast-import.podcast-import': ApiPodcastImportPodcastImport;
       'api::podcast-log.podcast-log': ApiPodcastLogPodcastLog;
+      'api::skill-import.skill-import': ApiSkillImportSkillImport;
       'api::skill.skill': ApiSkillSkill;
       'api::tag.tag': ApiTagTag;
       'api::use-case.use-case': ApiUseCaseUseCase;

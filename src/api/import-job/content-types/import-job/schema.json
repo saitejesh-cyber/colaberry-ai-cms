@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "import_jobs",
+  "info": {
+    "singularName": "import-job",
+    "pluralName": "import-jobs",
+    "displayName": "Import Job"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "entityType": {
+      "type": "enumeration",
+      "required": true,
+      "default": "skill",
+      "enum": [
+        "agent",
+        "mcpServer",
+        "skill",
+        "podcast"
+      ]
+    },
+    "csvFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "csvText": {
+      "type": "text"
+    },
+    "sourceUrl": {
+      "type": "string"
+    },
+    "runImport": {
+      "type": "boolean",
+      "default": false
+    },
+    "dryRun": {
+      "type": "boolean",
+      "default": true
+    },
+    "strictMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "createRelations": {
+      "type": "boolean",
+      "default": true
+    },
+    "publishEntries": {
+      "type": "boolean",
+      "default": true
+    },
+    "status": {
+      "type": "enumeration",
+      "default": "queued",
+      "enum": [
+        "queued",
+        "processing",
+        "completed",
+        "failed"
+      ]
+    },
+    "startedAt": {
+      "type": "datetime"
+    },
+    "processedAt": {
+      "type": "datetime"
+    },
+    "summary": {
+      "type": "json"
+    },
+    "errors": {
+      "type": "json"
+    },
+    "lastMessage": {
+      "type": "text"
+    }
+  }
+}

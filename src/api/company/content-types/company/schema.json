@@ -50,6 +50,30 @@
       "relation": "manyToMany",
       "target": "api::mcp-server.mcp-server",
       "mappedBy": "companies"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "companies"
+    },
+    "use_cases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::use-case.use-case",
+      "mappedBy": "companies"
+    },
+    "books": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::book.book",
+      "mappedBy": "companies"
+    },
+    "case_studies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::case-study.case-study",
+      "mappedBy": "companies"
     }
   }
 }

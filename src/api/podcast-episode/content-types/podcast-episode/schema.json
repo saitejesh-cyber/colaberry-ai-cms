@@ -141,6 +141,11 @@
       "relation": "oneToMany",
       "target": "api::podcast-log.podcast-log",
       "mappedBy": "episode"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

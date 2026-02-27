@@ -24,6 +24,18 @@
       "target": "api::article.article",
       "mappedBy": "category"
     },
+    "books": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book",
+      "mappedBy": "category"
+    },
+    "case_studies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::case-study.case-study",
+      "mappedBy": "category"
+    },
     "description": {
       "type": "text"
     }

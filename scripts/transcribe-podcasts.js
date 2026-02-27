@@ -124,17 +124,33 @@ async function request(path, options = {}) {
 }
 
 async function fetchEpisodes() {
-  const res = await withRetry(
-    () =>
-      request(
-        `/api/podcast-episodes?publicationState=preview&pagination[page]=1&pagination[pageSize]=${limit}` +
-          `&filters[audioUrl][$notNull]=true` +
-          `&filters[transcriptStatus][$ne]=ready` +
-          `&sort=publishedDate:desc`
-      ),
-    { label: "fetch-episodes" }
-  );
-  return res?.data || [];
+  const basePath =
+    `/api/podcast-episodes?publicationState=preview&pagination[page]=1&pagination[pageSize]=${limit}` +
+    `&filters[audioUrl][$notNull]=true` +
+    `&sort=publishedDate:desc`;
+
+  // Primary query: include episodes where transcriptStatus is null OR not ready.
+  const pendingPath =
+    `${basePath}` +
+    `&filters[$or][0][transcriptStatus][$null]=true` +
+    `&filters[$or][1][transcriptStatus][$ne]=ready`;
+
+  const pendingRes = await withRetry(() => request(pendingPath), {
+    label: "fetch-episodes-pending",
+  });
+  const pendingEpisodes = pendingRes?.data || [];
+  if (pendingEpisodes.length) {
+    return pendingEpisodes;
+  }
+
+  // Fallback for environments where OR/null filters behave inconsistently.
+  const allRes = await withRetry(() => request(basePath), {
+    label: "fetch-episodes-fallback",
+  });
+  return (allRes?.data || []).filter((item) => {
+    const attrs = item?.attributes || item || {};
+    return String(attrs.transcriptStatus || "").toLowerCase() !== "ready";
+  });
 }
 
 function normalizeSegments(segments) {

@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skill_imports",
+  "info": {
+    "singularName": "skill-import",
+    "pluralName": "skill-imports",
+    "displayName": "Skill Import"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "csvFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "csvText": {
+      "type": "text"
+    },
+    "runImport": {
+      "type": "boolean",
+      "default": false
+    },
+    "dryRun": {
+      "type": "boolean",
+      "default": true
+    },
+    "strictMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "createRelations": {
+      "type": "boolean",
+      "default": true
+    },
+    "publishEntries": {
+      "type": "boolean",
+      "default": true
+    },
+    "status": {
+      "type": "enumeration",
+      "default": "queued",
+      "enum": [
+        "queued",
+        "processing",
+        "completed",
+        "failed"
+      ]
+    },
+    "startedAt": {
+      "type": "datetime"
+    },
+    "processedAt": {
+      "type": "datetime"
+    },
+    "summary": {
+      "type": "json"
+    },
+    "errors": {
+      "type": "json"
+    },
+    "lastMessage": {
+      "type": "text"
+    }
+  }
+}

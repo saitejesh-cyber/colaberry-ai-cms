@@ -146,6 +146,28 @@
     },
     "exampleWorkflow": {
       "type": "text"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "agents"
+    },
+    "linkedUseCases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::use-case.use-case",
+      "mappedBy": "agents"
+    },
+    "linkedMcpServers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::mcp-server.mcp-server"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

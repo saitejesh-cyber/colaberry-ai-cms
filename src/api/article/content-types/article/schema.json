@@ -17,7 +17,7 @@
     },
     "description": {
       "type": "text",
-      "maxLength": 80
+      "maxLength": 280
     },
     "slug": {
       "type": "uid",
@@ -44,6 +44,21 @@
     "blocks": {
       "type": "dynamiczone",
       "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::company.company"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

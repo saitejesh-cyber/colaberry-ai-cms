@@ -133,3 +133,4 @@ database/
 build
 .strapi-updater.json
 .strapi-cloud.json
+!scripts/templates/*.template.csv

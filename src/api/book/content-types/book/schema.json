@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "use_cases",
+  "collectionName": "books",
   "info": {
-    "singularName": "use-case",
-    "pluralName": "use-cases",
-    "displayName": "Use Case"
+    "singularName": "book",
+    "pluralName": "books",
+    "displayName": "Book",
+    "description": "Enterprise books and companion artifacts"
   },
   "options": {
     "draftAndPublish": true
@@ -30,28 +31,17 @@
     "status": {
       "type": "enumeration",
       "default": "live",
-      "enum": [
-        "live",
-        "beta",
-        "concept"
-      ]
+      "enum": ["live", "beta", "concept", "archived"]
     },
     "visibility": {
       "type": "enumeration",
       "default": "public",
-      "enum": [
-        "public",
-        "private"
-      ]
+      "enum": ["public", "private"]
     },
     "source": {
       "type": "enumeration",
       "default": "internal",
-      "enum": [
-        "internal",
-        "external",
-        "partner"
-      ]
+      "enum": ["internal", "external", "partner"]
     },
     "sourceUrl": {
       "type": "string"
@@ -66,53 +56,67 @@
     "industry": {
       "type": "string"
     },
-    "category": {
+    "publisher": {
       "type": "string"
     },
-    "problem": {
-      "type": "text"
+    "publishDate": {
+      "type": "date"
     },
-    "approach": {
-      "type": "text"
+    "edition": {
+      "type": "string"
     },
-    "outcomes": {
-      "type": "text"
+    "isbn": {
+      "type": "string"
     },
-    "metrics": {
-      "type": "text"
+    "language": {
+      "type": "string"
+    },
+    "format": {
+      "type": "enumeration",
+      "default": "digital",
+      "enum": ["digital", "print", "audio", "mixed"]
+    },
+    "pageCount": {
+      "type": "integer"
+    },
+    "readingTime": {
+      "type": "string"
     },
     "keyBenefits": {
       "type": "text"
     },
-    "implementationSteps": {
-      "type": "text"
-    },
-    "requirements": {
+    "useCasesText": {
       "type": "text"
     },
     "limitations": {
       "type": "text"
     },
-    "timeline": {
-      "type": "string"
+    "requirements": {
+      "type": "text"
     },
-    "docsUrl": {
-      "type": "string"
+    "exampleWorkflow": {
+      "type": "text"
     },
-    "demoUrl": {
-      "type": "string"
+    "usageCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "rating": {
+      "type": "decimal"
     },
     "lastUpdated": {
       "type": "datetime"
     },
+    "downloadUrl": {
+      "type": "string"
+    },
+    "previewUrl": {
+      "type": "string"
+    },
     "coverImage": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ]
+      "allowedTypes": ["images", "files"]
     },
     "tags": {
       "type": "relation",
@@ -124,23 +128,21 @@
       "relation": "manyToMany",
       "target": "api::company.company"
     },
-    "agents": {
+    "category": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::agent.agent",
-      "inversedBy": "linkedUseCases"
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "books"
     },
-    "mcpServers": {
+    "useCases": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::mcp-server.mcp-server",
-      "inversedBy": "linkedUseCases"
+      "target": "api::use-case.use-case"
     },
-    "skills": {
+    "relatedArticles": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::skill.skill",
-      "mappedBy": "useCases"
+      "target": "api::article.article"
     },
     "seo": {
       "type": "component",

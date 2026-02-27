@@ -132,27 +132,37 @@
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tag.tag"
+      "target": "api::tag.tag",
+      "inversedBy": "skills"
     },
     "companies": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::company.company"
+      "target": "api::company.company",
+      "inversedBy": "skills"
     },
     "agents": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::agent.agent"
+      "target": "api::agent.agent",
+      "inversedBy": "skills"
     },
     "mcpServers": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::mcp-server.mcp-server"
+      "target": "api::mcp-server.mcp-server",
+      "inversedBy": "skills"
     },
     "useCases": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::use-case.use-case"
+      "target": "api::use-case.use-case",
+      "inversedBy": "skills"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

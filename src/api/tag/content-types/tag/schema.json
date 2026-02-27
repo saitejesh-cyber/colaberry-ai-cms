@@ -40,6 +40,30 @@
       "relation": "manyToMany",
       "target": "api::mcp-server.mcp-server",
       "mappedBy": "tags"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "tags"
+    },
+    "use_cases": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::use-case.use-case",
+      "mappedBy": "tags"
+    },
+    "books": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::book.book",
+      "mappedBy": "tags"
+    },
+    "case_studies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::case-study.case-study",
+      "mappedBy": "tags"
     }
   }
 }
